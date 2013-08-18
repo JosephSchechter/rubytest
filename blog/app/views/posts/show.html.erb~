@@ -1,0 +1,33 @@
+<!--showing post-->
+<p>
+	<strong>Title:</strong>
+	<%= @post.title %>
+</p>
+
+<p>
+	<strong>Text:</strong>
+	<%= @post.text %>
+</p>
+
+<!--showing comments-->
+<h2><u>Comments</u></h2>
+<%= render @post.comments %>
+
+<!--add a comment-->
+<h3>Add a Comment:</h3>
+<%= form_for([@post, @post.comments.build]) do |f| %>
+	<p>
+		<%= f.label :commenter %><br />
+		<%= f.text_field :commenter %>	
+	</p>
+	<p>
+		<%= f.label :body %><br />
+		<%= f.text_area :body %>
+	</p>
+	<p>
+		<%= f.submit %>
+	</p>
+<% end %>
+
+<%= link_to "go back", posts_path %>
+<%= link_to 'Edit Post', edit_post_path(@post) %>
